@@ -28,4 +28,19 @@ class PagesController < ApplicationController
     @fifth_die = rand(1..4)
     render({ :template => "pages_templates/five_four"})
   end
+
+  def random
+    @num_die = params.fetch("number_of_die").to_i
+    @num_sides = params.fetch("number_of_sides").to_i
+
+    @rolls = []
+
+    @num_die.times do
+      dice = rand(1..@num_sides)
+
+      @rolls.push(dice)
+    end
+
+    render({ :template => "pages_templates/random"})
+  end
 end
